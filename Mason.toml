@@ -1,7 +1,6 @@
 [brick]
 name="SciChap"
 version="0.1.0"
-chplVersion="2.7.0"
-license="BSD-3"
+chplVersion="2.4.0"
+license="BSD-3-Clause"
 type="library"
-compopts = "--checks --warnings --debug-safe-optimizations-only --debug-symbols"

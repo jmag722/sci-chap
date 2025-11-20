@@ -1,0 +1,23 @@
+name: SciChap CI
+on:
+  push:
+  release:
+  schedule:
+    - cron: "0 2 * * *"
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # whatever's not 'deprecated' on Spack
+        chapel-version: ['2.6.0', '2.5.0', '2.4.0']
+    container:
+      image: chapel/chapel:${{ matrix.chapel-version }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Using Chapel ${{ matrix.chapel-version }}, building package...
+        run: mason build -- --checks --warnings --debug
+      - name: Running tests with Mason...
+        run: mason test --show
+      - name: Building docs with chpldoc...
+        run: mason doc
