@@ -1,6 +1,6 @@
 [brick]
 name="SciChap"
 version="0.1.0"
-chplVersion="2.0.0"
-license="	BSD-3-Clause"
+chplVersion="2.4.0"
+license="BSD-3-Clause"
 type="library"
