@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         # whatever's not 'deprecated' on Spack
-        chapel-version: ['latest', '2.6.0', '2.5.0', '2.4.0']
+        chapel-version: ['2.6.0', '2.5.0', '2.4.0']
     container:
       image: chapel/chapel:${{ matrix.chapel-version }}
     steps:
