@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        chapel-version: ['2.6']
+        chapel-version: ['2.6.x']
     container:
       image: chapel/chapel:${{ matrix.chapel-version }}
     steps:
