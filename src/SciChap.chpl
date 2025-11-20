@@ -1,4 +1,7 @@
 module SciChap {
-  import Array;
-  import Integration;
+  include module Array;
+  include module Integration;
+
+  public import this.Array;
+  public import this.Integration;
 }

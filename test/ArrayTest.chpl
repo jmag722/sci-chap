@@ -1,6 +1,6 @@
 module ArrayTest {
   use UnitTest;
-  import Array;
+  import SciChap.Array;
 
   proc diff_uniform(test: borrowed Test) throws {
     test.assertEqual(Array.diff([1.0, 2.0, 3.0, 4.0, 5.0, 6.0]),
@@ -80,5 +80,9 @@ module ArrayTest {
   proc linspace_len1(test: borrowed Test) throws {
     test.assertEqual(Array.linspace(-16.0, -32.0, 1), [-16.0]);
     test.assertEqual(Array.linspace(-16.0, -32.0, 1, endpoint=false), [-16.0]);
+  }
+
+  proc main() throws {
+    UnitTest.main();
   }
 }

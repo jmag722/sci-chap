@@ -3,7 +3,7 @@
 */
 module Integration {
   import Math;
-  import Array;
+  import SciChap.Array;
 
   /*
   Performs trapezoidal rule, accounting for nonuniform domain spacing

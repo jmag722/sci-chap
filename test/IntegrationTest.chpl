@@ -2,7 +2,7 @@ module IntegrationTest {
   use Math;
   use UnitTest;
 
-  import Integration;
+  import SciChap.Integration;
 
   proc trapezoid_len1(test: borrowed Test) throws {
     test.assertEqual(Integration.trapezoid([0.0], [1.0]), 0.0);
@@ -73,6 +73,10 @@ module IntegrationTest {
     var atol: real = 0.0;
     var rtol: real = 1e-15;
     test.assertLessThan(abs(actual - expected), atol + rtol*(expected));
+  }
+
+  proc main() throws {
+    UnitTest.main();
   }
 
 }
