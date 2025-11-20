@@ -8,7 +8,7 @@ jobs:
       matrix:
         chapel-version: ['2.6']
     container:
-      image: chapel:${{ matrix.chapel-version }}
+      image: chapel/chapel:${{ matrix.chapel-version }}
     steps:
       - uses: actions/checkout@v5
       - name: Using Chapel ${{ matrix.chapel-version }}, building package...
