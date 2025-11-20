@@ -5,11 +5,12 @@ on:
   schedule:
     - cron: "0 2 * * *"
 jobs:
-  build:
+  build-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        chapel-version: ['2.6.0', '2.5.0', '2.4.0', '2.3.0', '2.2.0', '2.1.0', '2.0.0']
+        # whatever's not 'deprecated' on Spack
+        chapel-version: ['latest', '2.6.0', '2.5.0', '2.4.0']
     container:
       image: chapel/chapel:${{ matrix.chapel-version }}
     steps:
