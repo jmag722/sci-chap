@@ -1,0 +1,19 @@
+name: SciChap CI
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        chapel-version: ['2.6']
+    container:
+      image: chapel:${{ matrix.chapel-version }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Using Chapel ${{ matrix.chapel-version }}, building package...
+        run: mason build
+      - name: Running tests with Mason...
+        run: mason test --show
+      - name: Building docs with chpldoc...
+        run: mason doc
