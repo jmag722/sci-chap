@@ -1,5 +1,5 @@
 /*
-  Integration
+  Integration: Basic numerical integration techniques.
 */
 module Integration {
   import Math;
@@ -7,6 +7,10 @@ module Integration {
 
   /*
   Performs trapezoidal rule, accounting for nonuniform domain spacing
+
+  References:
+
+  "Trapezoidal Rule: Numerical Implementation: Non-uniform grid". Wikipedia.
 
   :arg x: function domain
   :arg y: function points
@@ -39,6 +43,15 @@ module Integration {
   /*
   Performs simpson rule, accounting for nonuniform domain spacing.
   If number of input points are less than 3, uses the trapezoidal rule.
+
+  References:
+
+  "Simpson's Rule: Composite Simpson's rule for irregularly spaced data".
+  Wikipedia.
+
+  Cartwright, Kenneth V. (September 2017). "Simpson's Rule Cumulative
+  Integration with MS Excel and Irregularly-spaced Data". Journal of
+  Mathematical Sciences and Mathematics Education. 12 (2): 1–9.
 
   :arg x: function domain
   :arg y: function points
