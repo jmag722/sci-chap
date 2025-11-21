@@ -4,3 +4,9 @@ version="0.1.0"
 chplVersion="2.4.0"
 license="BSD-3-Clause"
 type="library"
+
+[tool.chpl-language-server]
+module-dir="src"
+
+[tool.chplcheck]
+disable-rule = ["CamelCaseFunctions"] # unit tests break this convention
