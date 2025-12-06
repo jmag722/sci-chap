@@ -8,19 +8,22 @@ module Integration {
   /*
   Performs trapezoidal rule, accounting for nonuniform domain spacing
 
-  References:
+  *References:*
 
   "Trapezoidal Rule: Numerical Implementation: Non-uniform grid". Wikipedia.
 
-  :arg x: function domain
-  :arg y: function points
+  :arg y: function values
+  :type y: [?D] real
 
-  :returns: Integral under y for x domain
+  :arg x: function input points
+  :type x: [D] real
+
+  :returns: Integral of y for x domain
   :rtype: real
 
   :throws Error: Domain `x` not strictly increasing or decreasing
   */
-  proc trapezoid(const ref x: [?D] real, const ref y: [D] real): real throws
+  proc trapezoid(const ref y: [?D] real, const ref x: [D] real): real throws
                  where D.rank == 1 {
     if x.size < 2 {
       return 0.0;
@@ -44,27 +47,30 @@ module Integration {
   Performs simpson rule, accounting for nonuniform domain spacing.
   If number of input points are less than 3, uses the trapezoidal rule.
 
-  References:
-
-  "Simpson's Rule: Composite Simpson's rule for irregularly spaced data".
-  Wikipedia.
+  *References:*
 
   Cartwright, Kenneth V. (September 2017). "Simpson's Rule Cumulative
   Integration with MS Excel and Irregularly-spaced Data". Journal of
   Mathematical Sciences and Mathematics Education. 12 (2): 1–9.
 
-  :arg x: function domain
-  :arg y: function points
+  "Simpson's Rule: Composite Simpson's rule for irregularly spaced data".
+  Wikipedia.
 
-  :returns: Integral under y for x domain
+  :arg y: function values
+  :type y: [?D] real
+
+  :arg x: function input points
+  :type x: [D] real
+
+  :returns: Integral of y for x domain
   :rtype: real
 
   :throws Error: Domain `x` not strictly increasing or decreasing
   */
-  proc simpson(const ref x: [?D] real, const ref y: [D] real): real throws
+  proc simpson(const ref y: [?D] real, const ref x: [D] real): real throws
                where D.rank == 1 {
     if x.size < 3 {
-      return trapezoid(x=x, y=y);
+      return trapezoid(y=y, x=x);
     }
     else {
       if !Array.isMonotonic(x) {
