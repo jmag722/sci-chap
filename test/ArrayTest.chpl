@@ -82,6 +82,14 @@ module ArrayTest {
     test.assertEqual(Array.linspace(-16.0, -32.0, 1, endpoint=false), [-16.0]);
   }
 
+
+  proc arange_range1D(test: borrowed Test) throws {
+    test.assertEqual(Array.arange(-1..6), [-1, 0, 1, 2, 3, 4, 5, 6]);
+    test.assertEqual(Array.arange(-1..6, int), [-1, 0, 1, 2, 3, 4, 5, 6]);
+    test.assertEqual(Array.arange(1..5, real), [1.0, 2.0, 3.0, 4.0, 5.0]);
+    test.assertEqual(Array.arange(7..10, complex), [7+0i, 8+0i, 9+0i, 10+0i]);
+  }
+
   proc main() throws {
     UnitTest.main();
   }
