@@ -53,4 +53,23 @@ module Array {
     }
     return arr;
   }
+
+
+  /*
+   Converts a bounded range type into an array
+
+   :arg rng: bounded input range
+   :type rng: range
+
+   :arg T: numeric type
+   :type T: type
+
+   :returns: range converted to array
+   :rtype: [] T
+   */
+  proc arange(const rng: range(idxType=?, bounds=boundKind.both, strides=?),
+              type T=int): [] T where isNumericType(T) {
+    return [i in rng] i:T;
+  }
+
 }
