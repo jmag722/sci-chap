@@ -30,6 +30,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v4
         with:
+          name: artifact-${{ matrix.chapel-version }}
           path: doc/
   deploy:
     needs: build-test
