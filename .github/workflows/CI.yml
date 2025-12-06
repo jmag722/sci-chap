@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         # whatever's not 'deprecated' on Spack
-        chapel-version: ['2.6.0', '2.5.0', '2.4.0']
+        chapel-version: ['latest', '2.5.0', '2.4.0']
     container:
       image: chapel/chapel:${{ matrix.chapel-version }}
     steps:
@@ -27,10 +27,11 @@ jobs:
         id: build-doc
         run: mason doc
       - name: Upload artifacts...
+        if: ${{ matrix.chapel-version == 'latest' }}
         id: deployment
         uses: actions/upload-pages-artifact@v4
         with:
-          name: artifact-${{ matrix.chapel-version }}
+          name: doc-latest
           path: doc/
   deploy:
     needs: build-test
@@ -42,7 +43,7 @@ jobs:
 
     # Deploy to the github-pages environment
     environment:
-      name: artifact-${{ needs.build-test.strategy.matrix.chapel-version }}
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     # Specify runner + deployment step
