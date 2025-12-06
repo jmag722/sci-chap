@@ -56,6 +56,21 @@ module Array {
 
 
   /*
+   Create empty array
+
+   :arg T: numeric array type
+   :type T: type
+
+   :returns: empty array
+   :rtype: [] T
+   */
+  proc empty(type T): [1..0] T where isNumericType(T) {
+    var a: [1..0] T;
+    return a;
+  }
+
+
+  /*
    Converts a bounded range type into an array
 
    :arg rng: bounded input range
