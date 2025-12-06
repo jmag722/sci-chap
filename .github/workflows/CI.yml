@@ -14,10 +14,39 @@ jobs:
     container:
       image: chapel/chapel:${{ matrix.chapel-version }}
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout SciChap
+        id: checkout
+        uses: actions/checkout@v5
       - name: Using Chapel ${{ matrix.chapel-version }}, building package...
+        id: build
         run: mason build -- --checks --warnings --debug
       - name: Running tests with Mason...
+        id: test
         run: mason test --show
       - name: Building docs with chpldoc...
+        id: build-doc
         run: mason doc
+      - name: Upload artifacts...
+        id: deployment
+        uses: upload-pages-artifact@v4
+        with:
+          path: doc/
+  deploy:
+    needs: build-test
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
