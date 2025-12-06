@@ -82,6 +82,15 @@ module ArrayTest {
     test.assertEqual(Array.linspace(-16.0, -32.0, 1, endpoint=false), [-16.0]);
   }
 
+  proc empty_1(test: borrowed Test) throws {
+    var b: [1..0] real;
+    test.assertEqual(Array.empty(real), b);
+    var c: [1..0] complex;
+    test.assertEqual(Array.empty(complex), c);
+    var d: [1..0] int(32);
+    test.assertEqual(Array.empty(int(32)), d);
+  }
+
 
   proc arange_range1D(test: borrowed Test) throws {
     test.assertEqual(Array.arange(-1..6), [-1, 0, 1, 2, 3, 4, 5, 6]);
