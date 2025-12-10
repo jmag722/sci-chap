@@ -25,7 +25,8 @@ jobs:
         run: mason test --show
       - name: Running chplcheck...
         id: code-check
-        run: chplcheck --config Mason.toml $(find . -type f -iname "*.chpl")
+        # TODO: remove --disable-rule after dropping chapel 2.4.0 support
+        run: chplcheck --disable-rule CamelCaseFunctions $(find . -type f -iname "*.chpl")
       - name: Building docs with chpldoc...
         id: build-doc
         run: mason doc
