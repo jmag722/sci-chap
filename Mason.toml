@@ -9,4 +9,4 @@ type="library"
 module-dir="src"
 
 [tool.chplcheck]
-# disable-rule = ["CamelCaseFunctions"] # unit tests break this convention
+disable-rule = ["CamelCaseFunctions"] # unit tests break this convention
