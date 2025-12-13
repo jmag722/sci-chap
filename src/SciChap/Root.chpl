@@ -55,7 +55,7 @@ module Root {
     var xRootOld: real = xLower;
     var xRoot: real;
     var fRoot: real;
-    var maxIters: int = ceil(log2(abs(xUpper - xLower) / tol)): int;
+    var maxIters: int = bisect_maxIters(xLower, xUpper, tol);
     for 1..maxIters {
       xRoot = 0.5 * (xLower + xUpper);
       fRoot = func(xRoot);
@@ -71,5 +71,30 @@ module Root {
     }
     assert(abs((xRoot - xRootOld) / xRoot) <= tol);
     return xRoot;
+  }
+
+  /*
+    Determines the maximum number of iterations needed to achieve a bisection
+    error below the specified tolerance.
+
+    *References:*
+
+    Chapra, S. C., & Canale, R. P. (2015). Bracketing Methods. In
+    *Numerical Methods for Engineers* (7th ed., pp. 127-135).
+    McGraw-Hill Education.
+
+    :arg xLower: first bound on the interval. The magnitude of xLower relative
+      to xUpper is irrelevant.
+    :type xLower: real
+
+    :arg xUpper: second bound on the interval
+    :type xUpper: real
+
+    :arg tol: desired relative error
+    :type tol: real
+   */
+  proc bisect_maxIters(const xLower: real, const xUpper: real,
+                       const tol:real): int {
+    return ceil(log2(abs(xUpper - xLower) / tol)): int;
   }
 }
