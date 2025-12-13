@@ -6,24 +6,29 @@ module Root {
   use Math;
 
   /*
-    Find root of function with bisection method. For a continuous function
-    with proper inputs, convergence is guaranteed.
+    Bisection method. Convergence is guaranteed if:
 
-    Reference:
+    * function is continuous on the closed interval [xLower, xUpper]
+    * The function evaluation at one bound has a different sign than the other
+
+    *References:*
+
     Chapra, S. C., & Canale, R. P. (2015). Bracketing Methods. In
-    "Numerical Methods for Engineers" (7th ed., pp. 127-135).
+    *Numerical Methods for Engineers* (7th ed., pp. 127-135).
     McGraw-Hill Education.
 
-    :arg func: function for which root will be obtained on the given interval
+    :arg func: continuous function on which the root will be computed
     :type func: proc
 
-    :arg xLower: lower bound
+    :arg xLower: first bound on the interval. The magnitude of xLower relative
+      to xUpper is irrelevant.
     :type xLower: real
 
-    :arg xUpper: upper bound
+    :arg xUpper: second bound on the interval
     :type xUpper: real
 
-    :arg tol: relative tolerance
+    :arg tol: relative error. The true error is guaranteed to be below this
+      relative error.
     :type tol: real
 
     :returns: converged root
@@ -32,7 +37,7 @@ module Root {
     :throws IllegalArgumentError: Non-positive input tolerance
 
     :throws IllegalArgumentError: Initial upper and lower bounds values have the
-    same sign (meaning zero or more than 1 root).
+      same sign (meaning no root exists or more than 1 root).
    */
   proc bisect(const func, in xLower: real, in xUpper: real,
               const tol:real=1e-15): real throws {
