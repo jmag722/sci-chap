@@ -50,7 +50,7 @@ module Root {
     var xRootOld: real = xLower;
     var xRoot: real;
     var fRoot: real;
-    var maxIters: int = ceil(log2((xUpper - xLower) / tol)): int;
+    var maxIters: int = ceil(log2(abs(xUpper - xLower) / tol)): int;
     for 1..maxIters {
       xRoot = 0.5 * (xLower + xUpper);
       fRoot = func(xRoot);
